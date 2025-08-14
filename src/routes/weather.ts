@@ -5,7 +5,7 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get("/", async (req, res) => {
+router.get("/meteo", async (req, res) => {
   const city = req.query.city || "Lome";
 
   try {

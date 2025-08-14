@@ -17,10 +17,10 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const express_1 = require("express");
 const router = (0, express_1.Router)();
-router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const city = req.query.city || "Paris";
+router.get("/météo", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const city = req.query.city || "Lome";
     try {
-        const data = yield axios_1.default.get("https://api.openweathermap.org/data/2.5/weather?", {
+        const { data } = yield axios_1.default.get("https://api.openweathermap.org/data/2.5/weather?", {
             params: {
                 q: city,
                 appid: process.env.OPENWEATHER_KEY,
@@ -29,10 +29,10 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             }
         });
         res.json({
-            city: data.data.name,
-            temperature: data.data.main.temp,
-            description: data.data.weather[0].description,
-            icon: data.data.weather[0].icon,
+            city: data.name,
+            temperature: data.main.temp,
+            description: data.weather[0].description,
+            icon: data.weather[0].icon,
         });
     }
     catch (error) {

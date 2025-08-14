@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import weatherRoutes from "./routes/weather";
+import webhookRoutes from "./routes/webhook";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 
 
 app.use("/weather", weatherRoutes);
+app.use("/webhook", webhookRoutes);
 app.get("/", (req, res) => {
   res.send("Bienvenue sur l'API météo !");
 });

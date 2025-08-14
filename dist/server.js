@@ -9,8 +9,10 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const weather_1 = __importDefault(require("./routes/weather"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
+const PORT = process.env.PORT || 3001;
 app.use(body_parser_1.default.json());
 app.use("/weather", weather_1.default);
+app.use("/webhook", require("./routes/webhook").default);
 app.get("/", (req, res) => {
     res.send("Bienvenue sur l'API météo !");
 });
