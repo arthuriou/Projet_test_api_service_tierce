@@ -6,10 +6,10 @@ import { Router } from "express";
 const router = Router();
 
 router.get("/", async (req, res) => {
-  const city = req.query.city || "Paris";
+  const city = req.query.city || "Lome";
 
   try {
-    const data = await axios.get(
+    const {data} = await axios.get(
         "https://api.openweathermap.org/data/2.5/weather?",
         {
             params : {
@@ -21,10 +21,10 @@ router.get("/", async (req, res) => {
         }
     );
     res.json({
-      city: data.data.name,
-      temperature: data.data.main.temp,
-      description: data.data.weather[0].description,
-      icon: data.data.weather[0].icon,
+      city: data.name,
+      temperature: data.main.temp,
+      description: data.weather[0].description,
+      icon: data.weather[0].icon,
     });
 
   } 
